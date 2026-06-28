@@ -3,104 +3,281 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Accurate Wage Calculator</title>
+<title>Amazon Wage Calculator</title>
 <style>
-*{box-sizing:border-box}body{font-family:Arial,Helvetica,sans-serif;background:#f3f4f6;margin:0;color:#111827}.page{max-width:1100px;margin:24px auto;background:#fff;padding:28px;border:1px solid #d1d5db;box-shadow:0 2px 10px #0001}h1{text-align:center;margin:0 0 18px;text-transform:uppercase;font-size:28px}h2{font-size:20px;border-bottom:2px solid #222;padding-bottom:6px;margin:26px 0 12px}h3{font-size:17px;margin:16px 0 8px}.actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:14px 0 20px}button{border:0;border-radius:5px;padding:10px 15px;font-weight:bold;cursor:pointer}.blue{background:#2478b8;color:white}.green{background:#1f9d55;color:white}.orange{background:#f28c28;color:white}.grey{background:#6b7280;color:white}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}label{display:block;font-size:13px;font-weight:bold;margin-bottom:5px}input,select{width:100%;padding:9px;border:1px solid #c7c7c7;border-radius:4px;font-size:14px}.note{font-size:12px;color:#555;line-height:1.4}.summary{border:2px solid #222;display:grid;grid-template-columns:1fr 1fr;margin:16px 0 22px}.summary>div{padding:14px 18px}.summary>div:first-child{border-right:2px solid #222}.summary h3{text-align:center;text-transform:uppercase;margin-top:0}.mini{width:100%;border-collapse:collapse}.mini td{padding:5px 4px}.mini td:last-child{text-align:right;font-weight:bold}table{width:100%;border-collapse:collapse;margin:10px 0 14px;font-size:14px}th,td{border:1px solid #b8b8b8;padding:8px;text-align:left;vertical-align:top}th{background:#eef5e8;text-transform:uppercase;font-size:12px}.week{border:2px solid #222;margin:24px 0;background:white}.weekTitle{background:#f7f7f7;padding:10px 12px;font-size:18px;font-weight:bold;border-bottom:2px solid #222;text-transform:uppercase}.weekBody{padding:12px}.weekInputs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:12px 0;padding:12px;background:#fafafa;border:1px solid #ddd}.dayRow{display:grid;grid-template-columns:130px 110px 120px 1fr;gap:8px;align-items:center;border-bottom:1px solid #eee;padding:6px 0;font-size:14px}.dayRow:last-child{border-bottom:0}.dayRow input{width:auto;transform:scale(1.15)}.extra{background:#fff0f0;color:#d90000;font-weight:bold;text-align:center;padding:12px;border-top:2px solid #222;font-size:16px}.owed{background:#eefaf0;color:#1f9d55;font-weight:bold;text-align:center;padding:12px;border-top:2px solid #222;font-size:16px}.correct{background:#fff8df;font-weight:bold;text-align:center;padding:12px;border-top:2px solid #222;font-size:16px}.final{border:2px solid #222;background:#fff8df;padding:18px;margin-top:24px;font-size:18px}.final h2{border:0;text-align:center;margin-top:0;font-size:24px}.finalRow{display:grid;grid-template-columns:1fr auto;max-width:620px;margin:8px auto;gap:20px}.answer{font-size:26px;font-weight:bold;text-align:center;margin-top:16px;padding-top:12px;border-top:2px solid #222}.greenText{color:#1f9d55}.redText{color:#d90000}.right{text-align:right}.bold{font-weight:bold}.hidden{display:none}@media(max-width:760px){.page{margin:0;padding:14px}.grid,.summary,.weekInputs{grid-template-columns:1fr}.summary>div:first-child{border-right:0;border-bottom:2px solid #222}.dayRow{grid-template-columns:1fr}h1{font-size:21px}}@media print{body{background:#fff}.page{box-shadow:none;border:0;margin:0;max-width:none;padding:10px}.noPrint{display:none!important}.week{page-break-inside:avoid}h1{font-size:22px}table{font-size:12px}th,td{padding:5px}}
+*{box-sizing:border-box}
+body{font-family:Arial,Helvetica,sans-serif;background:#f3f4f6;margin:0;color:#111827}.page{max-width:1160px;margin:24px auto;background:#fff;padding:28px;border:1px solid #d1d5db;box-shadow:0 2px 10px #0001}h1{text-align:center;margin:0 0 18px;text-transform:uppercase;font-size:28px}h2{font-size:20px;border-bottom:2px solid #222;padding-bottom:6px;margin:26px 0 12px}h3{font-size:17px;margin:16px 0 8px}.actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:14px 0 20px}button{border:0;border-radius:5px;padding:10px 15px;font-weight:bold;cursor:pointer}.blue{background:#2478b8;color:white}.green{background:#1f9d55;color:white}.grey{background:#6b7280;color:white}.redBtn{background:#b91c1c;color:white}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}label{display:block;font-size:13px;font-weight:bold;margin-bottom:5px}input,select{width:100%;padding:9px;border:1px solid #c7c7c7;border-radius:4px;font-size:14px}input[readonly]{background:#f3f4f6;font-weight:bold}.note{font-size:12px;color:#555;line-height:1.35}.warningBox{background:#fff1f2;border:2px solid #dc2626;color:#991b1b;padding:12px;margin:14px 0;font-weight:bold;border-radius:4px}.okBox{background:#ecfdf5;border:2px solid #16a34a;color:#166534;padding:12px;margin:14px 0;font-weight:bold;border-radius:4px}.summary{border:2px solid #222;display:grid;grid-template-columns:1fr 1fr;margin:16px 0 22px}.summary>div{padding:14px 18px}.summary>div:first-child{border-right:2px solid #222}.summary h3{text-align:center;text-transform:uppercase;margin-top:0}.mini{width:100%;border-collapse:collapse}.mini td{padding:5px 4px}.mini td:last-child{text-align:right;font-weight:bold}table{width:100%;border-collapse:collapse;margin:10px 0 14px;font-size:14px}th,td{border:1px solid #b8b8b8;padding:8px;text-align:left;vertical-align:top}th{background:#eef5e8;text-transform:uppercase;font-size:12px}.week{border:2px solid #222;margin:24px 0;background:white}.weekTitle{background:#f7f7f7;padding:10px 12px;font-size:18px;font-weight:bold;border-bottom:2px solid #222;text-transform:uppercase}.weekBody{padding:12px}.weekInputs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin:12px 0;padding:12px;background:#fafafa;border:1px solid #ddd}.dayGrid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin:12px 0}.dayTile{border:1px solid #c7c7c7;border-radius:6px;padding:8px;min-height:94px;background:#fff}.dayTile.worked{background:#eefaf0;border-color:#1f9d55}.dayTile.notworked{background:#fff0f0;border-color:#e5b0b0}.dayTile.weeklyOff{background:#eef2ff;border-color:#6366f1;box-shadow:inset 0 0 0 2px #6366f122}.dayTile label{font-weight:normal;display:inline}.dayTile input{width:auto;transform:scale(1.1);margin-right:4px}.dateText{font-weight:bold}.dayText{font-size:12px;color:#555;margin:3px 0 8px}.offMarker{display:block;margin-top:6px;font-size:11px;font-weight:bold;color:#3730a3}.extra{background:#fff0f0;color:#d90000;font-weight:bold;text-align:center;padding:12px;border-top:2px solid #222;font-size:16px}.owed{background:#eefaf0;color:#1f9d55;font-weight:bold;text-align:center;padding:12px;border-top:2px solid #222;font-size:16px}.correct{background:#fff8df;font-weight:bold;text-align:center;padding:12px;border-top:2px solid #222;font-size:16px}.final{border:2px solid #222;background:#fff8df;padding:18px;margin-top:24px;font-size:18px}.final h2{border:0;text-align:center;margin-top:0;font-size:24px}.finalRow{display:grid;grid-template-columns:1fr auto;max-width:820px;margin:8px auto;gap:20px}.answer{font-size:26px;font-weight:bold;text-align:center;margin-top:16px;padding-top:12px;border-top:2px solid #222}.greenText{color:#1f9d55}.redText{color:#d90000}.right{text-align:right}.bold{font-weight:bold}.hidden{display:none}
+@media(max-width:850px){.page{margin:0;padding:14px}.grid,.summary,.weekInputs{grid-template-columns:1fr}.summary>div:first-child{border-right:0;border-bottom:2px solid #222}.dayGrid{grid-template-columns:1fr 1fr}h1{font-size:21px}}
+@media(max-width:520px){.dayGrid{grid-template-columns:1fr}}
+@media print{@page{size:A4 landscape;margin:4mm}html,body{background:#fff;width:100%;height:auto}.page{box-shadow:none;border:0;margin:0;max-width:none;width:100%;padding:3px}.noPrint,.weekInputs,.dayGrid,.weekResult .dailyTable{display:none!important}h1{font-size:15px;margin:0 0 4px}h2{font-size:11px;margin:5px 0 3px;padding-bottom:2px}h3{font-size:9px;margin:3px 0}p,.note{font-size:7px;margin:1px 0;line-height:1.1}.grid{display:none}.summary{display:none}.week{border:1px solid #222;margin:3px 0;page-break-inside:avoid}.weekTitle{font-size:8px;padding:2px 4px;border-bottom:1px solid #222}.weekBody{padding:2px}.weekResult .summary{display:grid!important;grid-template-columns:1fr 1fr;margin:2px 0;border:1px solid #222}.weekResult .summary>div{padding:2px 3px}.weekResult .summary>div:first-child{border-right:1px solid #222}.weekResult div[style*="border:2px solid #222"]{display:none!important}table{font-size:7px;margin:1px 0 2px}th,td{padding:1px 2px;border:1px solid #aaa}th{font-size:6px}.mini td{padding:1px 2px}.extra,.owed,.correct{font-size:8px;padding:2px;border-top:1px solid #222}.final{border:1px solid #222;margin-top:4px;padding:4px;font-size:8px;page-break-inside:avoid}.final h2{font-size:12px;margin:0 0 2px}.finalRow{max-width:760px;margin:1px auto;gap:6px;font-size:8px}.answer{font-size:14px;margin-top:3px;padding-top:3px;border-top:1px solid #222}.final div[style*="max-width:800px"]{margin:3px auto 0!important;border:1px solid #222!important;padding:3px!important}}
 </style>
 </head>
 <body>
 <div class="page">
-<h1>Accurate Weekly Wage Calculation Sheet</h1>
-<div class="actions noPrint"><button class="orange" onclick="loadExample()">Load Dec 2025 / Jan 2026 Example</button><button class="blue" onclick="buildWeeks()">Build Accurate Weeks</button><button class="green" onclick="calculateAll()">Calculate</button><button class="grey" onclick="window.print()">Print / Save as PDF</button><button class="grey" onclick="clearAll()">Clear</button></div>
+<h1>Amazon Wage Calculation Sheet</h1>
+
+<div class="actions noPrint">
+<button class="blue" onclick="buildWeeks()">Build Monday–Sunday Weeks</button>
+<button class="green" onclick="calculateAll()">Calculate</button>
+<button class="grey" onclick="window.print()">Print / Save 1-Page PDF</button>
+<button class="grey" onclick="clearAll()">Clear</button>
+</div>
+
 <h2>1. Wage Settings</h2>
 <div class="grid">
-<div><label>Total weekly wage (£)</label><input id="totalWeekly" type="number" step="0.01" value="423"></div>
-<div><label>Paid working days per week</label><input id="workingDays" type="number" step="1" value="6"></div>
-<div><label>Weekly cash wage (£)</label><input id="weeklyCash" type="number" step="0.01" value="228"></div>
-<div><label>Bank payment method</label><select id="bankMode" onchange="toggleBankMode();buildWeeks();"><option value="monthly" selected>Monthly standing order</option><option value="weekly">Weekly bank amount</option></select></div>
-<div id="monthlyBankBox"><label>Monthly standing order amount (£)</label><input id="monthlyBank" type="number" step="0.01" value="845.56"><div class="note">Weekly bank used = monthly amount ÷ 4.33</div></div>
-<div id="weeklyBankBox" class="hidden"><label>Weekly bank amount (£)</label><input id="weeklyBank" type="number" step="0.01" value="195"></div>
+<div><label>Monthly total combined wage (£)</label><input id="monthlyTotal" type="number" step="0.01" value="1832" oninput="syncWages()"><div class="note">Total monthly wage including bank and cash.</div></div>
+<div><label>Monthly bank payment (£)</label><input id="monthlyBank" type="number" step="0.01" value="615.16" oninput="syncWages()"><div class="note">Current standing order bank payment.</div></div>
+<div><label>Paid working days per week</label><input id="workingDays" type="number" step="1" value="6" readonly><div class="note">Fixed rule: 6 paid working days + 1 weekly off day.</div></div>
+<div><label>Total weekly wage (£)</label><input id="totalWeekly" type="number" step="0.01" readonly><div class="note">System calculated: monthly total ÷ 4.33.</div></div>
+<div><label>Weekly bank payment (£)</label><input id="weeklyBank" type="number" step="0.01" readonly><div class="note">System calculated: monthly bank ÷ 4.33.</div></div>
+<div><label>Weekly cash wage (£)</label><input id="weeklyCash" type="number" step="0.01" readonly><div class="note">System calculated. Not editable.</div></div>
+<div><label>Mon–Sat hours per worked day</label><input id="weekdayHours" type="number" step="0.01" value="9.5" oninput="syncWages()"><div class="note">1:00pm to 10:30pm = 9.5 hours.</div></div>
+<div><label>Sunday hours per worked day</label><input id="sundayHours" type="number" step="0.01" value="9" oninput="syncWages()"><div class="note">1:00pm to 10:00pm = 9 hours.</div></div>
+<div><label>Preferred weekly off day</label><select id="normalOffDay" onchange="syncWages()"><option value="0" selected>Sunday</option><option value="1">Monday</option><option value="2">Tuesday</option><option value="3">Wednesday</option><option value="4">Thursday</option><option value="5">Friday</option><option value="6">Saturday</option></select><div class="note">If this day is not worked, it is marked as weekly off. If it is worked, the first unticked day becomes weekly off.</div></div>
 </div>
-<h2>2. Accurate Date Range</h2>
-<div class="grid"><div><label>Start date</label><input id="startDate" type="date" value="2025-12-22"></div><div><label>End date</label><input id="endDate" type="date" value="2026-01-18"></div><div><label>Wage week format</label><select id="weekStart" onchange="buildWeeks()"><option value="1" selected>Monday to Sunday</option><option value="0">Sunday to Saturday</option></select></div></div>
-<p class="note">This version avoids confusing typed date ranges. It builds the exact wage weeks, then you tick the days worked and enter cash taken for each week.</p>
+
+<div id="wageValidation"></div>
+<div class="okBox">
+Weekly rule: wages are calculated for <strong>6 paid working days only</strong>. 
+The <strong>1 weekly off day</strong> is not paid, not counted in wages, and not counted as an absence.
+</div>
+
+<h2>2. Select Full Weeks Only</h2>
+<div class="grid">
+<div><label>First week Monday</label><input id="startDate" type="date"><div class="note">Must be a Monday. No middle-week start allowed.</div></div>
+<div><label>Last week Sunday</label><input id="endDate" type="date"><div class="note">Must be a Sunday. No middle-week end allowed.</div></div>
+<div><label>Week format</label><input type="text" value="Monday to Sunday only" readonly></div>
+</div>
+
+<p class="note">Build weeks only after selecting a Monday start date and a Sunday end date. Each week has exactly 6 paid working days and 1 weekly off day — not counted in wages.</p>
+
 <div id="rateSummary" class="summary"></div>
+
 <h2>3. Tick Worked Days and Enter Cash Taken</h2>
 <div id="weeksContainer"></div>
-<div class="actions noPrint"><button class="green" onclick="calculateAll()">Calculate Final Balance</button><button class="grey" onclick="window.print()">Print / Save as PDF</button></div>
+
+<div class="actions noPrint">
+<button class="green" onclick="calculateAll()">Calculate Final Balance</button>
+<button class="grey" onclick="window.print()">Print / Save 1-Page PDF</button>
+</div>
+
 <div id="output"></div>
 </div>
+
 <script>
-function money(n){return '£'+Number(n||0).toFixed(2)}function parseDate(v){let p=v.split('-');return new Date(+p[0],+p[1]-1,+p[2])}function iso(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}function fdate(d){return d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})}function day(d){return d.toLocaleDateString('en-GB',{weekday:'long'})}function add(d,n){let x=new Date(d);x.setDate(x.getDate()+n);return x}function weeklyBank(){return document.getElementById('bankMode').value==='monthly'?Number(document.getElementById('monthlyBank').value||0)/4.33:Number(document.getElementById('weeklyBank').value||0)}
-function rates(){let tw=+document.getElementById('totalWeekly').value||0,wd=+document.getElementById('workingDays').value||6,wc=+document.getElementById('weeklyCash').value||0,wb=weeklyBank();return{tw,wd,wc,wb,totalDay:tw/wd,cashDay:wc/wd,bankDayByWage:(tw-wc)/wd}}
-function toggleBankMode(){let m=document.getElementById('bankMode').value;document.getElementById('monthlyBankBox').classList.toggle('hidden',m!=='monthly');document.getElementById('weeklyBankBox').classList.toggle('hidden',m!=='weekly')}
-function updateRateSummary(){let r=rates(),m=document.getElementById('bankMode').value,bt=m==='monthly'?money(+document.getElementById('monthlyBank').value||0)+' monthly ÷ 4.33 = '+money(r.wb)+' weekly':money(r.wb)+' weekly';document.getElementById('rateSummary').innerHTML='<div><h3>Weekly Wage Settings</h3><table class="mini"><tr><td>Total weekly wage:</td><td>'+money(r.tw)+'</td></tr><tr><td>Weekly cash wage:</td><td>'+money(r.wc)+'</td></tr><tr><td>Actual bank payment used:</td><td>'+bt+'</td></tr><tr><td>Working days per week:</td><td>'+r.wd+'</td></tr></table></div><div><h3>Per Working Day</h3><table class="mini"><tr><td>Total wage per day:</td><td>'+money(r.totalDay)+'</td></tr><tr><td>Cash per day:</td><td>'+money(r.cashDay)+'</td></tr><tr><td>Bank part from total wage:</td><td>'+money(r.bankDayByWage)+'</td></tr><tr><td>Actual bank per week:</td><td>'+money(r.wb)+'</td></tr></table></div>'}
-function weekStartDate(date,startDay){let d=new Date(date),diff=(d.getDay()-startDay+7)%7;return add(d,-diff)}
-function buildWeeks(){updateRateSummary();let start=parseDate(document.getElementById('startDate').value),end=parseDate(document.getElementById('endDate').value),weekStart=+document.getElementById('weekStart').value,container=document.getElementById('weeksContainer');if(end<start){alert('End date must be after start date.');return}container.innerHTML='';let ws=weekStartDate(start,weekStart),idx=0;while(ws<=end){let we=add(ws,6),vs=ws<start?start:ws,ve=we>end?end:we,days='';for(let i=0;i<7;i++){let d=add(ws,i);if(d<start||d>end)continue;days+='<div class="dayRow"><div><strong>'+fdate(d)+'</strong></div><div>'+day(d)+'</div><div><label style="display:inline;font-weight:normal"><input type="checkbox" class="workedBox" data-date="'+iso(d)+'"> Worked</label></div><div class="note">Tick if this day was worked.</div></div>'}let card=document.createElement('div');card.className='week';card.innerHTML='<div class="weekTitle">Week '+(idx+1)+': '+fdate(vs)+' to '+fdate(ve)+'</div><div class="weekBody"><div class="weekInputs noPrint"><div><label>Actual cash taken this week (£)</label><input type="number" step="0.01" class="cashTaken" value="0"></div><div><label>Actual bank paid for this week (£)</label><input type="number" step="0.01" class="bankPaid" value="'+weeklyBank().toFixed(2)+'"></div></div>'+days+'<div class="weekResult"></div></div>';container.appendChild(card);ws=add(ws,7);idx++}document.getElementById('output').innerHTML=''}
-function loadExample(){document.getElementById('totalWeekly').value='423';document.getElementById('workingDays').value='6';document.getElementById('weeklyCash').value='228';document.getElementById('bankMode').value='monthly';document.getElementById('monthlyBank').value='845.56';document.getElementById('startDate').value='2025-12-22';document.getElementById('endDate').value='2026-01-18';document.getElementById('weekStart').value='1';toggleBankMode();buildWeeks();let worked=new Set(['2025-12-22','2025-12-23','2025-12-24','2026-01-05','2026-01-06','2026-01-07','2026-01-08','2026-01-09','2026-01-10','2026-01-12','2026-01-13','2026-01-14','2026-01-15','2026-01-16','2026-01-17']);document.querySelectorAll('.workedBox').forEach(cb=>cb.checked=worked.has(cb.dataset.date));[114,0,0,156].forEach((v,i)=>{let el=document.querySelectorAll('.cashTaken')[i];if(el)el.value=v.toFixed(2)});document.querySelectorAll('.bankPaid').forEach(el=>el.value=weeklyBank().toFixed(2));calculateAll()}
-function calculateAll(){
- updateRateSummary();
- let r=rates(),td=0,te=0,tac=0,tab=0,tar=0,tbal=0,summary=[];
- function signed(v){return v>=0?money(v):'-'+money(Math.abs(v))}
- function simpleResultText(balance){
-   if(balance>0.005) return 'Employer owes employee '+money(balance);
-   if(balance<-0.005) return 'Employee received extra '+money(Math.abs(balance));
-   return 'Correct / no balance owed';
- }
- document.querySelectorAll('.week').forEach((card,idx)=>{
-   let boxes=[...card.querySelectorAll('.workedBox')],
-       daysWorked=boxes.filter(c=>c.checked).length,
-       actualCash=+card.querySelector('.cashTaken').value||0,
-       actualBank=+card.querySelector('.bankPaid').value||0,
-       correct=daysWorked*r.totalDay,
-       correctCash=daysWorked*r.cashDay,
-       correctBank=daysWorked*r.bankDayByWage,
-       received=actualCash+actualBank,
-       balance=correct-received;
+function money(n){return '£'+Number(n||0).toFixed(2)}
+function parseDate(v){if(!v)return null;var p=v.split('-');return new Date(+p[0],+p[1]-1,+p[2],12,0,0)}
+function iso(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function fdate(d){return d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})}
+function shortDate(d){return d.toLocaleDateString('en-GB',{day:'numeric',month:'short'})}
+function day(d){return d.toLocaleDateString('en-GB',{weekday:'long'})}
+function add(d,n){var x=new Date(d);x.setDate(x.getDate()+n);x.setHours(12,0,0,0);return x}
+function num(id){return Number(document.getElementById(id).value||0)}
+function isMonday(d){return d&&d.getDay()===1}
+function isSunday(d){return d&&d.getDay()===0}
+function normalOffDay(){return Number(document.getElementById('normalOffDay').value)}
 
-   td+=daysWorked; te+=correct; tac+=actualCash; tab+=actualBank; tar+=received; tbal+=balance;
-
-   let dayRows=boxes.map(cb=>{
-     let d=parseDate(cb.dataset.date),w=cb.checked;
-     return '<tr><td>'+fdate(d)+'</td><td>'+day(d)+'</td><td>'+(w?'Worked':'Off')+'</td><td class="right">'+money(w?r.totalDay:0)+'</td><td class="right">'+money(w?r.cashDay:0)+'</td><td class="right">'+money(w?r.bankDayByWage:0)+'</td></tr>'
-   }).join('');
-
-   let cls='correct',txt='Week '+(idx+1)+' Result: Correct / no balance owed';
-   if(balance>0.005){cls='owed';txt='Week '+(idx+1)+' Result: Employer owes employee '+money(balance)}
-   else if(balance<-0.005){cls='extra';txt='Week '+(idx+1)+' Result: Employee received '+money(Math.abs(balance))+' extra'}
-
-   card.querySelector('.weekResult').innerHTML=
-     '<h3>Day-by-day breakdown</h3>'+ 
-     '<table><thead><tr><th>Date</th><th>Day</th><th>Status</th><th class="right">Pay Earned</th><th class="right">Cash Part</th><th class="right">Bank Part</th></tr></thead><tbody>'+dayRows+'</tbody><tfoot><tr><td colspan="3" class="bold">Total days worked: '+daysWorked+'</td><td class="right bold">'+money(correct)+'</td><td class="right bold">'+money(correctCash)+'</td><td class="right bold">'+money(correctBank)+'</td></tr></tfoot></table>'+ 
-     '<div class="summary"><div><h3>What Should Have Been Paid</h3><table class="mini"><tr><td>Correct wage earned:</td><td>'+money(correct)+'</td></tr><tr><td>Correct cash part:</td><td>'+money(correctCash)+'</td></tr><tr><td>Correct bank part:</td><td>'+money(correctBank)+'</td></tr></table></div><div><h3>What Actually Happened</h3><table class="mini"><tr><td>Cash taken:</td><td>'+money(actualCash)+'</td></tr><tr><td>Bank paid:</td><td>'+money(actualBank)+'</td></tr><tr><td>Total received:</td><td>'+money(received)+'</td></tr></table></div></div>'+ 
-     '<div style="border:2px solid #222;background:#fff8df;margin:12px 0;padding:12px"><h3 style="text-align:center;margin-top:0">How This Week Balance Is Worked Out</h3><table class="mini"><tr><td>Correct wages for worked days:</td><td>'+money(correct)+'</td></tr><tr><td>Minus total received:</td><td>- '+money(received)+'</td></tr><tr><td>Balance calculation:</td><td>'+money(correct)+' - '+money(received)+' = '+signed(balance)+'</td></tr><tr><td>Meaning:</td><td>'+simpleResultText(balance)+'</td></tr></table></div>'+ 
-     '<div class="'+cls+'">'+txt+'</div>';
-
-   summary.push({daysWorked,correct,actualCash,actualBank,received,balance});
- });
-
- let rows=summary.map((s,i)=>{
-   let res='Correct';
-   if(s.balance>0.005)res='Employer owes '+money(s.balance);
-   if(s.balance<-0.005)res='Employee received extra '+money(Math.abs(s.balance));
-   return '<tr><td>Week '+(i+1)+'</td><td class="right">'+s.daysWorked+'</td><td class="right">'+money(s.correct)+'</td><td class="right">'+money(s.actualCash)+'</td><td class="right">'+money(s.actualBank)+'</td><td class="right">'+money(s.received)+'</td><td class="right bold">'+money(s.correct)+' - '+money(s.received)+' = '+signed(s.balance)+'</td><td class="right bold">'+res+'</td></tr>'
- }).join('');
-
- let fclass=tbal>0.005?'greenText':tbal<-0.005?'redText':'',
-     ftext=tbal>0.005?'Employer owes employee '+money(tbal):tbal<-0.005?'Employee owes employer '+money(Math.abs(tbal)):'Correct / no balance owed';
-
- document.getElementById('output').innerHTML=
-   '<div class="final"><h2>Final Balance After All Weeks</h2>'+ 
-   '<table><thead><tr><th>Week</th><th class="right">Days Worked</th><th class="right">Correct Wage</th><th class="right">Cash Taken</th><th class="right">Bank Paid</th><th class="right">Total Received</th><th class="right">Calculation</th><th class="right">Result</th></tr></thead><tbody>'+rows+'</tbody></table>'+ 
-   '<div class="finalRow"><span>Total days worked:</span><strong>'+td+' days</strong></div>'+ 
-   '<div class="finalRow"><span>Correct wages for worked days:</span><strong>'+money(te)+'</strong></div>'+ 
-   '<div class="finalRow"><span>Total cash taken:</span><strong>'+money(tac)+'</strong></div>'+ 
-   '<div class="finalRow"><span>Total bank paid:</span><strong>'+money(tab)+'</strong></div>'+ 
-   '<div class="finalRow"><span>Total received:</span><strong>'+money(tar)+'</strong></div>'+ 
-   '<div style="max-width:760px;margin:18px auto 0;border:2px solid #222;background:white;padding:14px"><h3 style="text-align:center;margin-top:0">Simple Final Calculation</h3><table class="mini"><tr><td>Worked-days wage total:</td><td>'+td+' days × '+money(r.totalDay)+' = '+money(te)+'</td></tr><tr><td>Total received:</td><td>Cash '+money(tac)+' + Bank '+money(tab)+' = '+money(tar)+'</td></tr><tr><td>Final balance:</td><td>'+money(te)+' - '+money(tar)+' = '+signed(tbal)+'</td></tr><tr><td>Meaning:</td><td>'+ftext+'</td></tr></table></div>'+ 
-   '<div class="answer '+fclass+'">'+ftext+'</div></div>'
+function syncWages(){
+    var monthlyTotal=num('monthlyTotal');
+    var monthlyBank=num('monthlyBank');
+    var totalWeekly=monthlyTotal/4.33;
+    var weeklyBank=monthlyBank/4.33;
+    var weeklyCash=(monthlyTotal-monthlyBank)/4.33;
+    document.getElementById('totalWeekly').value=totalWeekly.toFixed(2);
+    document.getElementById('weeklyBank').value=weeklyBank.toFixed(2);
+    document.getElementById('weeklyCash').value=weeklyCash.toFixed(2);
+    document.querySelectorAll('.bankPaid').forEach(function(el){el.value=weeklyBank.toFixed(2)});
+    validateWages();
+    updateRateSummary();
 }
-function clearAll(){if(confirm('Clear all entries?')){document.getElementById('weeksContainer').innerHTML='';document.getElementById('output').innerHTML=''}}toggleBankMode();buildWeeks();
+
+function rates(){
+    var tw=num('totalWeekly'), wd=6, wc=num('weeklyCash'), wb=num('weeklyBank');
+    return {tw:tw, wd:wd, wc:wc, wb:wb, totalDay:tw/wd, cashDay:wc/wd, bankDay:(tw-wc)/wd};
+}
+function dayHours(d){return d.getDay()===0 ? num('sundayHours') : num('weekdayHours')}
+function standardWeekHours(){
+    var off=normalOffDay(), total=0;
+    for(var i=0;i<7;i++){ if(i!==off){ total += (i===0 ? num('sundayHours') : num('weekdayHours')); } }
+    return total;
+}
+function validateWages(){
+    var monthlyTotal=num('monthlyTotal'), monthlyBank=num('monthlyBank'), weeklyCash=(monthlyTotal-monthlyBank)/4.33;
+    var box=document.getElementById('wageValidation');
+    if(monthlyTotal<=0 || monthlyBank<0){box.innerHTML='<div class="warningBox">Enter valid monthly total wage and monthly bank payment.</div>';return false}
+    if(monthlyBank>monthlyTotal){box.innerHTML='<div class="warningBox">Monthly bank payment cannot be higher than the monthly total wage.</div>';return false}
+    if(weeklyCash<0){box.innerHTML='<div class="warningBox">Weekly cash wage works out negative. Check the amounts.</div>';return false}
+    var check=monthlyBank+(weeklyCash*4.33);
+    box.innerHTML='<div class="okBox">Wage settings valid: Monthly bank '+money(monthlyBank)+' + weekly cash '+money(weeklyCash)+' × 4.33 = '+money(check)+' monthly total. Weekly cash is set by the system.</div>';
+    return true;
+}
+function updateRateSummary(){
+    var r=rates(), stdHours=standardWeekHours(), hourly=stdHours>0?r.tw/stdHours:0;
+    document.getElementById('rateSummary').innerHTML='<div><h3>Weekly Wage Settings</h3><table class="mini">'+
+    '<tr><td>Monthly total wage:</td><td>'+money(num('monthlyTotal'))+'</td></tr>'+
+    '<tr><td>Monthly bank payment:</td><td>'+money(num('monthlyBank'))+'</td></tr>'+
+    '<tr><td>Total weekly wage:</td><td>'+money(r.tw)+'</td></tr>'+
+    '<tr><td>Weekly bank:</td><td>'+money(r.wb)+'</td></tr>'+
+    '<tr><td>Weekly cash:</td><td>'+money(r.wc)+'</td></tr>'+
+    '<tr><td>Weekly rule:</td><td>6 paid working days + 1 allocated off day</td></tr>'+
+    '</table></div><div><h3>Hours and Hourly Rate</h3><table class="mini">'+
+    '<tr><td>Total wage per paid day:</td><td>'+money(r.totalDay)+'</td></tr>'+
+    '<tr><td>Cash per paid day:</td><td>'+money(r.cashDay)+'</td></tr>'+
+    '<tr><td>Bank part per paid day:</td><td>'+money(r.bankDay)+'</td></tr>'+
+    '<tr><td>Standard full-week hours:</td><td>'+stdHours.toFixed(2)+' hours</td></tr>'+
+    '<tr><td>Standard hourly rate:</td><td>'+money(hourly)+'</td></tr>'+
+    '</table></div>';
+}
+function formatDateRanges(dates){
+    if(!dates || dates.length===0)return 'None';
+    var arr=dates.map(function(d){return new Date(d)}).sort(function(a,b){return a-b});
+    var ranges=[], start=arr[0], prev=arr[0];
+    for(var i=1;i<arr.length;i++){
+        var d=arr[i];
+        if(Math.round((d-prev)/86400000)===1){prev=d}else{ranges.push(start.getTime()===prev.getTime()?fdate(start):fdate(start)+' to '+fdate(prev));start=prev=d}
+    }
+    ranges.push(start.getTime()===prev.getTime()?fdate(start):fdate(start)+' to '+fdate(prev));
+    return ranges.join(', ');
+}
+function collectExistingWeekValues(){
+    var map={};
+    document.querySelectorAll('.week').forEach(function(card){
+        map[card.dataset.weekStart]={cash:card.querySelector('.cashTaken') ? card.querySelector('.cashTaken').value : '', worked:[].slice.call(card.querySelectorAll('.workedBox')).filter(function(c){return c.checked}).map(function(c){return c.dataset.date})};
+    });
+    return map;
+}
+function buildWeeks(){
+    syncWages();
+    if(!validateWages())return;
+    var start=parseDate(document.getElementById('startDate').value), end=parseDate(document.getElementById('endDate').value);
+    if(!start || !end){alert('Please select the first week Monday and last week Sunday.');return}
+    if(!isMonday(start)){alert('Start date must be a Monday. Please select the Monday of the first week.');return}
+    if(!isSunday(end)){alert('End date must be a Sunday. Please select the Sunday of the last week.');return}
+    if(end<start){alert('End date must be after start date.');return}
+    var daysBetween=Math.round((end-start)/86400000)+1;
+    if(daysBetween%7!==0){alert('The selected period must be complete Monday-to-Sunday weeks only.');return}
+    var existing=collectExistingWeekValues();
+    var container=document.getElementById('weeksContainer');
+    container.innerHTML='';
+    var ws=new Date(start), idx=0;
+    while(ws<=end){
+        var we=add(ws,6), key=iso(ws), prev=existing[key]||{}, days='';
+        for(var i=0;i<7;i++){
+            var d=add(ws,i), checked=prev.worked&&prev.worked.indexOf(iso(d))>-1?'checked':'', cls=checked?'worked':'notworked';
+            days+='<div class="dayTile '+cls+'" data-tile="'+iso(d)+'"><div class="dateText">'+shortDate(d)+'</div><div class="dayText">'+day(d)+'</div><label><input type="checkbox" class="workedBox" data-date="'+iso(d)+'" '+checked+' onchange="tileChanged(this)"> Worked</label><div class="note">'+dayHours(d).toFixed(2)+' hours if worked</div></div>';
+        }
+        var cashValue=prev.cash!==undefined ? prev.cash : '';
+        var card=document.createElement('div');
+        card.className='week';
+        card.dataset.weekStart=key;
+        card.innerHTML='<div class="weekTitle">Week '+(idx+1)+': '+fdate(ws)+' to '+fdate(we)+'</div><div class="weekBody">'+
+        '<div class="weekInputs noPrint"><div><label>Actual cash taken this week (£)</label><input type="number" step="0.01" class="cashTaken" value="'+cashValue+'" placeholder="Enter cash taken, or 0"></div><div><label>Bank paid this week (£)</label><input type="number" step="0.01" class="bankPaid" value="'+num('weeklyBank').toFixed(2)+'" readonly><div class="note">Auto calculated from monthly bank payment.</div></div><div><label>Weekly rule</label><input type="text" value="6 paid days + 1 weekly off — not counted" readonly></div></div>'+
+        '<div class="dayGrid">'+days+'</div><div class="weekResult"></div></div>';
+        container.appendChild(card);
+        ws=add(ws,7);idx++;
+    }
+    document.getElementById('output').innerHTML='';
+}
+function tileChanged(cb){
+    var tile=cb.closest('.dayTile');
+    tile.classList.remove('worked','notworked','weeklyOff');
+    tile.classList.add(cb.checked?'worked':'notworked');
+    var marker=tile.querySelector('.offMarker');
+    if(marker)marker.remove();
+}
+function resetWeeklyOffMarkers(boxes){
+    boxes.forEach(function(cb){
+        var tile=cb.closest('.dayTile');
+        if(!tile)return;
+        tile.classList.remove('weeklyOff');
+        var marker=tile.querySelector('.offMarker');
+        if(marker)marker.remove();
+    });
+}
+function allocatedWeeklyOffBox(boxes){
+    var offDay=normalOffDay();
+    var unchecked=boxes.filter(function(c){return !c.checked});
+    if(unchecked.length===0)return null;
+    var preferred=unchecked.find(function(c){return parseDate(c.dataset.date).getDay()===offDay});
+    return preferred || unchecked[0];
+}
+function markAllocatedWeeklyOff(cb){
+    if(!cb)return;
+    var tile=cb.closest('.dayTile');
+    if(!tile)return;
+    tile.classList.add('weeklyOff');
+    if(!tile.querySelector('.offMarker')){
+        var marker=document.createElement('div');
+        marker.className='offMarker';
+        marker.textContent='Weekly off day — not counted in wages';
+        tile.appendChild(marker);
+    }
+}
+function calculateAll(){
+    syncWages();
+    if(!validateWages())return;
+    if(document.querySelectorAll('.week').length===0){alert('Please build Monday-to-Sunday weeks first.');return}
+    var r=rates(), td=0, th=0, te=0, tac=0, tab=0, tar=0, tbal=0;
+    var totalNotWorked=0, allNotWorkedDates=[], allWeeklyOffDates=[], rows=[];
+    function signed(v){return v>=0?money(v):'-'+money(Math.abs(v))}
+    function resultText(balance){if(balance>0.005)return 'Amazon owes employee '+money(balance);if(balance<-0.005)return 'Employee received extra '+money(Math.abs(balance));return 'Correct / no balance owed'}
+
+    try{
+        document.querySelectorAll('.week').forEach(function(card,idx){
+            var boxes=[].slice.call(card.querySelectorAll('.workedBox'));
+            resetWeeklyOffMarkers(boxes);
+            var workedBoxes=boxes.filter(function(c){return c.checked});
+            var daysWorked=workedBoxes.length;
+            if(daysWorked>6){alert('Week '+(idx+1)+' has '+daysWorked+' days ticked as worked. Work is 6 days per week, so one day must be left unticked as the weekly off day.');throw new Error('Too many worked days')}
+            var weeklyOffBox=allocatedWeeklyOffBox(boxes);
+            if(!weeklyOffBox){alert('Week '+(idx+1)+' needs one weekly off day. Untick one day.');throw new Error('No weekly off day')}
+            markAllocatedWeeklyOff(weeklyOffBox);
+            var weeklyOffDate=parseDate(weeklyOffBox.dataset.date), weeklyOffText=fdate(weeklyOffDate);
+            var notWorkedBoxes=boxes.filter(function(c){return !c.checked && c!==weeklyOffBox});
+            var daysNotWorked=notWorkedBoxes.length;
+            var notWorkedDates=notWorkedBoxes.map(function(c){return parseDate(c.dataset.date)});
+            var notWorkedText=formatDateRanges(notWorkedDates);
+            var hoursWorked=0; workedBoxes.forEach(function(cb){hoursWorked+=dayHours(parseDate(cb.dataset.date))});
+            var cashInput=card.querySelector('.cashTaken');
+            if(cashInput.value===''){alert('Please enter cash taken for Week '+(idx+1)+'. Use 0 if no cash was taken.');cashInput.focus();throw new Error('Missing cash')}
+            var actualCash=Number(cashInput.value||0), actualBank=Number(card.querySelector('.bankPaid').value||0);
+            var correct=daysWorked*r.totalDay, correctCash=daysWorked*r.cashDay, correctBank=daysWorked*r.bankDay, received=actualCash+actualBank, balance=correct-received;
+            td+=daysWorked; th+=hoursWorked; te+=correct; tac+=actualCash; tab+=actualBank; tar+=received; tbal+=balance; totalNotWorked+=daysNotWorked; allNotWorkedDates=allNotWorkedDates.concat(notWorkedDates); allWeeklyOffDates.push(weeklyOffDate);
+            var dayRows=boxes.map(function(cb){
+                var d=parseDate(cb.dataset.date), w=cb.checked, hrs=w?dayHours(d):0;
+                var status=w?'Worked':(cb===weeklyOffBox?'Weekly off — not counted':'Not worked');
+                return '<tr><td>'+fdate(d)+'</td><td>'+day(d)+'</td><td>'+status+'</td><td class="right">'+(w?hrs.toFixed(2):'0.00')+'</td><td class="right">'+money(w?r.totalDay:0)+'</td><td class="right">'+money(w?r.cashDay:0)+'</td><td class="right">'+money(w?r.bankDay:0)+'</td></tr>';
+            }).join('');
+            var cls='correct',txt='Week '+(idx+1)+' Result: Correct / no balance owed';
+            if(balance>0.005){cls='owed';txt='Week '+(idx+1)+' Result: Amazon owes employee '+money(balance)}
+            else if(balance<-0.005){cls='extra';txt='Week '+(idx+1)+' Result: Employee received '+money(Math.abs(balance))+' extra'}
+            card.querySelector('.weekResult').innerHTML='<div class="dailyTable"><h3>Day-by-day breakdown</h3><table><thead><tr><th>Date</th><th>Day</th><th>Status</th><th class="right">Hours</th><th class="right">Pay Earned</th><th class="right">Cash Part</th><th class="right">Bank Part</th></tr></thead><tbody>'+dayRows+'</tbody><tfoot><tr><td colspan="3" class="bold">Total paid days worked: '+daysWorked+'</td><td class="right bold">'+hoursWorked.toFixed(2)+'</td><td class="right bold">'+money(correct)+'</td><td class="right bold">'+money(correctCash)+'</td><td class="right bold">'+money(correctBank)+'</td></tr></tfoot></table></div>'+ 
+            '<div class="summary"><div><h3>What Should Have Been Paid</h3><table class="mini"><tr><td>Weekly rule:</td><td>6 paid days + 1 weekly off</td></tr><tr><td>Weekly off day — not counted in wages:</td><td>'+weeklyOffText+'</td></tr><tr><td>Paid working days:</td><td>'+daysWorked+' out of 6</td></tr><tr><td>Days not worked after weekly off:</td><td>'+daysNotWorked+'</td></tr><tr><td>Period not worked:</td><td>'+notWorkedText+'</td></tr><tr><td>Hours worked:</td><td>'+hoursWorked.toFixed(2)+'</td></tr><tr><td>Correct wage earned:</td><td>'+money(correct)+'</td></tr></table></div><div><h3>What Actually Happened</h3><table class="mini"><tr><td>Cash taken:</td><td>'+money(actualCash)+'</td></tr><tr><td>Bank paid:</td><td>'+money(actualBank)+'</td></tr><tr><td>Total received:</td><td>'+money(received)+'</td></tr><tr><td>Calculation:</td><td>'+money(correct)+' - '+money(received)+' = '+signed(balance)+'</td></tr><tr><td>Meaning:</td><td>'+resultText(balance)+'</td></tr></table></div></div>'+ 
+            '<div style="border:2px solid #222;background:#fff8df;margin:12px 0;padding:12px"><h3 style="text-align:center;margin-top:0">How This Week Balance Is Worked Out</h3><table class="mini"><tr><td>Correct wages for worked days:</td><td>'+money(correct)+'</td></tr><tr><td>Minus total received:</td><td>- '+money(received)+'</td></tr><tr><td>Balance calculation:</td><td>'+money(correct)+' - '+money(received)+' = '+signed(balance)+'</td></tr><tr><td>Meaning:</td><td>'+resultText(balance)+'</td></tr></table></div><div class="'+cls+'">'+txt+'</div>';
+            rows.push({daysWorked:daysWorked,weeklyOffText:weeklyOffText,daysNotWorked:daysNotWorked,notWorkedText:notWorkedText,hoursWorked:hoursWorked,correct:correct,actualCash:actualCash,actualBank:actualBank,received:received,balance:balance});
+        });
+    }catch(e){return}
+
+    var summaryRows=rows.map(function(s,i){
+        var res='Correct'; if(s.balance>0.005)res='Amazon owes '+money(s.balance); if(s.balance<-0.005)res='Employee received extra '+money(Math.abs(s.balance));
+        return '<tr><td>Week '+(i+1)+'</td><td>'+s.weeklyOffText+'</td><td class="right">'+s.daysWorked+'</td><td class="right">'+s.daysNotWorked+'</td><td>'+s.notWorkedText+'</td><td class="right">'+s.hoursWorked.toFixed(2)+'</td><td class="right">'+money(s.correct)+'</td><td class="right">'+money(s.actualCash)+'</td><td class="right">'+money(s.actualBank)+'</td><td class="right">'+money(s.received)+'</td><td class="right bold">'+money(s.correct)+' - '+money(s.received)+' = '+signed(s.balance)+'</td><td class="right bold">'+res+'</td></tr>';
+    }).join('');
+    var effectiveHourly=th>0?te/th:0;
+    var fclass=tbal>0.005?'greenText':tbal<-0.005?'redText':'';
+    var ftext=tbal>0.005?'Amazon owes employee '+money(tbal):tbal<-0.005?'Employee owes Amazon '+money(Math.abs(tbal)):'Correct / no balance owed';
+    document.getElementById('output').innerHTML='<div class="final"><h2>Final Balance After All Weeks</h2><table><thead><tr><th>Week</th><th>Allocated Weekly Off</th><th class="right">Paid Days Worked</th><th class="right">Days Not Worked</th><th>Period Not Worked</th><th class="right">Hours Worked</th><th class="right">Correct Wage</th><th class="right">Cash Taken</th><th class="right">Bank Paid</th><th class="right">Total Received</th><th class="right">Calculation</th><th class="right">Result</th></tr></thead><tbody>'+summaryRows+'</tbody></table>'+ 
+    '<div class="finalRow"><span>Weekly rule:</span><strong>6 paid working days + 1 weekly off day — not counted in wages</strong></div><div class="finalRow"><span>Weekly off day — not counted in wagess:</span><strong>'+formatDateRanges(allWeeklyOffDates)+'</strong></div><div class="finalRow"><span>Total paid days worked:</span><strong>'+td+' days</strong></div><div class="finalRow"><span>Total days not worked after weekly off:</span><strong>'+totalNotWorked+' days</strong></div><div class="finalRow"><span>Period not worked:</span><strong>'+formatDateRanges(allNotWorkedDates)+'</strong></div><div class="finalRow"><span>Total hours worked:</span><strong>'+th.toFixed(2)+' hours</strong></div><div class="finalRow"><span>Correct wages for worked days:</span><strong>'+money(te)+'</strong></div><div class="finalRow"><span>Total cash taken:</span><strong>'+money(tac)+'</strong></div><div class="finalRow"><span>Total bank paid:</span><strong>'+money(tab)+'</strong></div><div class="finalRow"><span>Total received:</span><strong>'+money(tar)+'</strong></div><div class="finalRow"><span>Effective hourly rate for worked period:</span><strong>'+money(effectiveHourly)+'</strong></div>'+ 
+    '<div style="max-width:800px;margin:18px auto 0;border:2px solid #222;background:white;padding:14px"><h3 style="text-align:center;margin-top:0">Simple Final Calculation</h3><table class="mini"><tr><td>Work pattern:</td><td>Each week has 6 paid working days and 1 weekly off day — not counted in wages. The weekly off day — not counted in wages is not counted as a not-worked day.</td></tr><tr><td>Worked-days wage total:</td><td>'+td+' days × '+money(r.totalDay)+' = '+money(te)+'</td></tr><tr><td>Total received:</td><td>Cash '+money(tac)+' + Bank '+money(tab)+' = '+money(tar)+'</td></tr><tr><td>Final balance:</td><td>'+money(te)+' - '+money(tar)+' = '+signed(tbal)+'</td></tr><tr><td>Hourly rate:</td><td>'+money(te)+' ÷ '+th.toFixed(2)+' hours = '+money(effectiveHourly)+'</td></tr><tr><td>Meaning:</td><td>'+ftext+'</td></tr></table></div><div class="answer '+fclass+'">'+ftext+'</div></div>';
+}
+function clearAll(){
+    if(confirm('Clear weeks and results?')){
+        document.getElementById('weeksContainer').innerHTML='';
+        document.getElementById('output').innerHTML='';
+        document.getElementById('startDate').value='';
+        document.getElementById('endDate').value='';
+    }
+}
+syncWages();
 </script>
 </body>
 </html>
